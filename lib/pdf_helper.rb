@@ -55,7 +55,7 @@ module PdfHelper
     end
 
     def make_pdf(options = {})
-      render_opts = {:template => options[:template], :layout => options[:layout], :formats => options[:formats], :handlers => options[:handlers], :locals => options[:locals]}
+      render_opts = {:template => options[:template], :layout => options[:layout], :formats => options[:formats], :handlers => options[:handlers], :header_locals => options[:header][:html][:locals], :footer_locals => options[:footer][:html][:locals]}
       render_opts.merge!(:file => options[:file]) if options[:file]
       html_string = render_to_string(render_opts)
       options = prerender_header_and_footer(options)
